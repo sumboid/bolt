@@ -10,14 +10,8 @@ namespace bitset
 		int numberOfParts;
 		unsigned long size;
 	
-		struct Position
-		{
-			int numberOfPart;
-			int positionInPart;
-		};
-
 		Bitset();
-		Position getPosition(const unsigned long& number) const;
+		void inline getPosition(const unsigned long& number, int& numberOfPart, int& positionInPart) const;
 	public:
 		Bitset(const unsigned long& size);
 		~Bitset();

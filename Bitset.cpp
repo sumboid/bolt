@@ -24,27 +24,27 @@ namespace bitset
 
 	Bitset::~Bitset() {}
 
-	Bitset::Position Bitset::getPosition(const unsigned long& number) const
+	void Bitset::getPosition(const unsigned long& number, int& numberOfPart, int& positionInPart) const
 	{
-		Position position;
-		position.numberOfPart = number/BITS_IN_LONG;
-		position.positionInPart = number%BITS_IN_LONG;
-
-		return position;
+		numberOfPart = number/BITS_IN_LONG;
+		positionInPart = number%BITS_IN_LONG;
 	}
 
 	void Bitset::invert(const unsigned long& number)
 	{
-		Position position = getPosition(number);
+		int numberOfPart, positionInPart;
+		getPosition(number, numberOfPart, positionInPart);
 		unsigned long invert = 1;
-		invert <<= BITS_IN_LONG - position.positionInPart;
-		set[position.numberOfPart] ^= invert;
+		invert <<= BITS_IN_LONG - positionInPart;
+		set[numberOfPart] ^= invert;
 	}
 	
 	short Bitset::operator[](const unsigned long& number) const
 	{
-		Position position = getPosition(number);
-		return ((set[position.numberOfPart] << (position.positionInPart-1)) >> (BITS_IN_LONG - 1));
+		int numberOfPart, positionInPart;
+		getPosition(number, numberOfPart, positionInPart);
+	
+		return ((set[numberOfPart] << (positionInPart-1)) >> (BITS_IN_LONG - 1));
 	}
 }
 
