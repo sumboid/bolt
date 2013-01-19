@@ -55,6 +55,6 @@ namespace test
 		invertTest();
 		getTest();
 		cout << "=====================================" << endl;
-		cout << "All test are SUCCESSFULLY FINISHED" << endl;
+		cout << "All test SUCCESSFULLY FINISHED" << endl;
 	}
 }
